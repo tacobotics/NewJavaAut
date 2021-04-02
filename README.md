@@ -3,11 +3,14 @@
 Description of variables:
 Zone:
 < which zone to drop the goal in;
+
 Index:
 < used somwhere in the stuff FTC wrote. Don't change it, and don't delete it;
+
 Go:
 < boolean that determines whether or not to end the vision stuff;
-List<Recognition> recognitions
+List<Recognition> recognitions:
+  
 < is also used somewhere in the pre-wrote stuff;
 
 List of stuff that is actually worth messing with in the vuforia init stuff:
