@@ -23,11 +23,13 @@ public class java_auto extends Taco_Super_class {
 
     double Shooter_Speed;
     double Rounds;
-    double Zone;
+    double Zone; //stuff for vision
+    double index; //stuff for vision
+    boolean go; //stuff for vision
 
     @Override
     public void runOpMode() {
-        List<Recognition> recognitions;
+        List<Recognition> recognitions; //stuff for vision
         Right_Front = hardwareMap.get(DcMotor.class, "Right_Front");
         Right_Rear = hardwareMap.get(DcMotor.class, "Right_Rear");
         Left_Front = hardwareMap.get(DcMotor.class, "Left_Front");
@@ -53,9 +55,71 @@ public class java_auto extends Taco_Super_class {
         shooter.setDirection(DcMotorSimple.Direction.REVERSE);
         arm.setDirection(DcMotorSimple.Direction.REVERSE);
         wheels.setDirection(DcMotorSimple.Direction.REVERSE);
+        androidSoundPool = new AndroidSoundPool(); //stuff for sound
+        vuforiaUltimateGoal = new VuforiaCurrentGame(); //stuff for vision
+        tfodUltimateGoal = new TfodCurrentGame(); //stuff for vision
+        Zone = 1; //Stuff for vision
+        go = false; //stuff for vision
 
+        /* stuff for vision below */
+        vuforiaUltimateGoal.initialize(
+                "", // vuforiaLicenseKey
+                hardwareMap.get(WebcamName.class, "Webcam 1"), // cameraName
+                "", // webcamCalibrationFilename
+                false, // useExtendedTracking
+                true, // enableCameraMonitoring
+                VuforiaLocalizer.Parameters.CameraMonitorFeedback.AXES, // cameraMonitorFeedback
+                0, // dx
+                0, // dy
+                0, // dz
+                0, // xAngle
+                0, // yAngle
+                0, // zAngle
+                true); // useCompetitionFieldTargetLocations
+        // Set min confidence threshold to 0.7
+        tfodUltimateGoal.initialize(vuforiaUltimateGoal, 0.7F, true, true);
+        // Initialize TFOD before waitForStart.
+        // Init TFOD here so the object detection labels are visible
+        // in the Camera Stream preview window on the Driver Station.
+        tfodUltimateGoal.activate();
+        // Enable following block to zoom in on target.
+        tfodUltimateGoal.setZoom(2.5, 16 / 9);
+        telemetry.addData(">", "Press Play to start");
+        telemetry.update();
+        androidSoundPool.play("RawRes:ss_roger_roger");//sound stuff
+
+        recognitions = tfodUltimateGoal.getRecognitions();
+        while(go=false);{
+            // If list is empty, inform the user. Otherwise, go
+            // through list and display info for each recognition.
+            if (isStarted()) {
+                go=true;
+            } else {
+                index = 0;
+                for (Recognition recognition_item : recognitions) {
+                    recognition = recognition_item;
+                    // Display info.
+                    displayInfo(index);
+                    // Increment index.
+                    index = index + 1;
+                    Object2();
+                    telemetry.addData("Zone", Zone);
+                    telemetry.update();
+                }
+            }
+        }
+        waitForStart();
+        if(opModeIsActive()){
+            if (Zone == 1) {
+                Zone_A();
+            } else if (Zone == 2) {
+                Zone_B();
+            } else if (Zone == 3) {
+                Zone_C();
+            }
         }
 
+        }
 
     public void Zone_A() {
         //wobbleClawL.setposition(grab);
