@@ -2,13 +2,13 @@
 
 Description of variables:
 Zone:
-<which zone to drop the goal in;
+< which zone to drop the goal in;
 Index:
-<used somwhere in the stuff FTC wrote. Don't change it, and don't delete it;
+< used somwhere in the stuff FTC wrote. Don't change it, and don't delete it;
 Go:
-<boolean that determines whether or not to end the vision stuff;
+< boolean that determines whether or not to end the vision stuff;
 List<Recognition> recognitions
-<is also used somewhere in the pre-wrote stuff;
+< is also used somewhere in the pre-wrote stuff;
 
 List of stuff that is actually worth messing with in the vuforia init stuff:
 > The boolean that allows for camera monitoring. Make sure it is true if we want to see the camera feed on the driver station; The camera zoom if the rings aren't visible
