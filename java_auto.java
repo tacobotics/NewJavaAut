@@ -108,7 +108,7 @@ public class java_auto extends Taco_Super_class {
                 }
             }
         }
-        waitForStart();
+
         if(opModeIsActive()){
             if (Zone == 1) {
                 Zone_A();
