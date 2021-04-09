@@ -134,11 +134,8 @@ public abstract class Taco_Super_class extends LinearOpMode {
 
     /*public void initshooter (double distance, double power){
         shooter = hardwareMap.dcMotor.get("Shooter");
-
         IMUstraightDouble(turn);
-
        while (shooter.getCurrentPosition() < shootertarget && opModeIsActive()){
-
            double turn = IMUstraightDouble(turn);
            powerDriveTrain((power + turn), (power - turn));
            telemetry.update();
@@ -351,17 +348,12 @@ public abstract class Taco_Super_class extends LinearOpMode {
     //______________________pid stuff__________________________________________________________
 
    /* PIDController pid = new PIDController(new PIDCoefficients(kP, kI, kD));
-
-
     public double IMUstraightDouble(double targetAngle) {
-
         double currentAngle = getAngle();
         pid.setCoeffs(new PIDCoefficients(kP, kI, kD));
         return pid.update(currentAngle - targetAngle);
     }
-
     public double distancePIDDouble(double power) {
-
         //double shooter = getAngle();
         pid.setCoeffs(new PIDCoefficients(kP, kI, kD));
         return pid.update(-shootertarget);
@@ -501,8 +493,6 @@ public abstract class Taco_Super_class extends LinearOpMode {
     }
 
     /*public void goal(double fore,double right,double turn){
-
-
         dfore = (fore-fect())*.2;
         dright = (right-rect())*.3;
         dturn = (turn-tect())*.1;
@@ -510,7 +500,6 @@ public abstract class Taco_Super_class extends LinearOpMode {
         telemetry.addData("dright",dright);
         telemetry.addData("dturn",dturn);
         telemetry.update();
-
         teledrive(dfore,dright,dturn);
         Left_Rear.setPower(dfore + dright - dturn);
         Left_Front.setPower(dfore - dright - dturn);
